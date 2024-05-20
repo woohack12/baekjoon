@@ -6,7 +6,7 @@ int main(){
     int n0;
     scanf("%d%d%d%d", &a1,&a0,&c,&n0);
     if(c-a1==0){
-        if(a0==0) printf("1\n");
+        if(a0<=0) printf("1\n");
         else printf("0\n");
     }
     else if(c-a1<0){

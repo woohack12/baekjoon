@@ -1,44 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
-int partition(int *arr, int l, int r);
-void quikSort(int *arr,int l, int r);
-void swap(int *a, int *b);
+#define max 1000000
+void merge(int *arr, int l, int m, int r);
+void mergeSort(int *arr, int l, int r);
+
 int main(){
     int n;
     scanf("%d", &n);
-    int *arr=(int*)malloc(sizeof(int)*n);
+    int arr[n];
     for(int i=0; i<n; i++){
         scanf("%d", &arr[i]);
     }
-    quikSort(arr,0,n-1);
+    mergeSort(arr, 0,n-1);
     for(int i=0; i<n; i++){
         printf("%d\n", arr[i]);
     }
     return 0;
 }
 
-void quikSort(int *arr,int l, int r){
-    if(l<r){
-        int p=partition(arr,l,r);
-        quikSort(arr,l,p-1);
-        quikSort(arr,p+1,r);
-    }
-}
-void swap(int *a, int *b){
-    int tmp;
-    tmp=*a;
-    *a=*b;
-    *b=tmp;
-}
-int partition(int *arr, int l, int r){
-    int p=arr[r];
-    int i=l-1;
-    for(int j=l; j<r; j++){
-        if(arr[j]<p){
-            i++;
-            swap(&arr[j], &arr[i]);
+void merge(int *arr, int l, int m, int r){
+    int tmp[max];
+    int i=l;
+    int j=m+1;
+    int k=l;
+
+    while(i<=m && j<=r){    //왼쪽 부분 오른쪽 부분 비교
+        if(arr[i]<arr[j]){
+            tmp[k++]=arr[i++];
+        }
+        else{
+            tmp[k++]=arr[j++];
         }
     }
-    swap(&arr[i+1], &arr[r]);
-    return i+1; //pivot position
+    while(j<=r){
+        tmp[k++]=arr[j++];
+    }
+    while(i<=m){
+        tmp[k++]=arr[i++];
+    }
+    k--;
+    while(k>=0){
+        arr[k]=tmp[k];
+        k--;
+    }
+}
+void mergeSort(int *arr, int l, int r){
+    if(l<r){
+        int m=(l+r)/2;
+        mergeSort(arr,l,m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l,m,r);
+    }
 }

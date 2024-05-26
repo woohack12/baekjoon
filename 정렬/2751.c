@@ -3,7 +3,7 @@
 #define max 1000000
 void merge(int *arr, int l, int m, int r);
 void mergeSort(int *arr, int l, int r);
-
+int tmp[max];
 int main(){
     int n;
     scanf("%d", &n);
@@ -19,13 +19,12 @@ int main(){
 }
 
 void merge(int *arr, int l, int m, int r){
-    int tmp[max];
     int i=l;
     int j=m+1;
     int k=l;
 
     while(i<=m && j<=r){    //왼쪽 부분 오른쪽 부분 비교
-        if(arr[i]<arr[j]){
+        if(arr[i]<=arr[j]){
             tmp[k++]=arr[i++];
         }
         else{
@@ -39,9 +38,8 @@ void merge(int *arr, int l, int m, int r){
         tmp[k++]=arr[i++];
     }
     k--;
-    while(k>=0){
-        arr[k]=tmp[k];
-        k--;
+    for(int a=l; a<=r; a++){
+        arr[a]=tmp[a];
     }
 }
 void mergeSort(int *arr, int l, int r){

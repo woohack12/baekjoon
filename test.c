@@ -1,8 +1,12 @@
 #include <stdio.h>
 
 int main(){
-    int num=35;
-    float hash=num*1.5;
-    printf("%f\n", hash);
+    int flag=1;
+    if(flag){
+        for(int i=0; i<4; i++){
+            printf("d");
+            flag=0;
+        }
+    }
 }
 

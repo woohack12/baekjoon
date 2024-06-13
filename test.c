@@ -1,12 +1,10 @@
 #include <stdio.h>
-
+enum cmd{
+    push
+};
 int main(){
-    int flag=1;
-    if(flag){
-        for(int i=0; i<4; i++){
-            printf("d");
-            flag=0;
-        }
-    }
+    char tmp[5];
+    scanf("%s", tmp);
+    printf("%d", tmp);
 }
 

@@ -1,11 +1,14 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
 #include <string>
+bool arr[3]={true,true,true};
+using namespace std;
 
+bool compare(string a, string b){
+    return a<b;
+}
 using namespace std;
 int main(){
-    string str;
-    getline(cin,str);
-    int num=str[0];
-    cout << num;
-    return 0;
+    cout<<arr[1]<<endl;
 }
